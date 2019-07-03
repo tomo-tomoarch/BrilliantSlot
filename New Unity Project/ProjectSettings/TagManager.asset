@@ -6,6 +6,7 @@ TagManager:
   tags:
   - buttonTag1
   - button1
+  - reel
   layers:
   - Default
   - TransparentFX
@@ -42,6 +43,9 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: reel
+    uniqueID: 2629673147
     locked: 0
   - name: waku
     uniqueID: 1945238375
