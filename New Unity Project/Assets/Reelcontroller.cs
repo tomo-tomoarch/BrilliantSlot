@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Reelcontroller : MonoBehaviour
 {
+    
+
+    AudioSource[] sounds;//オーディオの宣言
+
     public GameObject Reel; //リールを取得
     public GameObject Reel2;
     public GameObject Reel3;
@@ -16,28 +20,29 @@ public class Reelcontroller : MonoBehaviour
     float speed2;
     float speed3;
 
-    bool stopflag1 = false;
+    bool stopflag1 = false;//ボタンが押されたかどうか
     bool stopflag2 = false;
     bool stopflag3 = false;
 
-    ReelGenerator1 reelGenerator1;
+    ReelGenerator1 reelGenerator1;//ReelGenerator1の宣言
     ReelGenerator1 reelGenerator2;
     ReelGenerator1 reelGenerator3;
 
     private void Awake()　//ゲーム開始時に
     {
-        
+        sounds = gameObject.GetComponents<AudioSource>();//オーディオの取得
+
         initialpos = this.Reel.transform.position;　//初期位置を取得しておく
         initialpos2 = this.Reel2.transform.position;
         initialpos3 = this.Reel3.transform.position;
 
-        reelGenerator1 = GameObject.Find("ReelGenerator").GetComponent<ReelGenerator1>();
+        reelGenerator1 = GameObject.Find("ReelGenerator").GetComponent<ReelGenerator1>();//ReelGenerator1の取得
         reelGenerator2 = GameObject.Find("ReelGenerator (1)").GetComponent<ReelGenerator1>();
         reelGenerator3 = GameObject.Find("ReelGenerator (2)").GetComponent<ReelGenerator1>();
     }
-    public void StartReel()
+    public void StartReel()//リールを再生成して回し始める関数
     {
-        reelGenerator1.GenerateReel();
+        reelGenerator1.GenerateReel();//ReelGenerator1のGenerateReel関数を呼ぶ
         reelGenerator2.GenerateReel();
         reelGenerator3.GenerateReel();
 
@@ -45,17 +50,36 @@ public class Reelcontroller : MonoBehaviour
         speed2 = -0.35f;
         speed3 = -0.35f;
 
-        stopflag1 = false;
+        stopflag1 = false;　//ボタンを押していない状態にリセット
         stopflag2 = false;
         stopflag3 = false;
 
-    }   
+         
+
+        if (stopflag1 != true)
+        {
+            sounds[0].time = 5f;
+            sounds[0].Play();//ガチャっというオーディオの取得
+        }
+        if (stopflag2 != true)
+        {
+            sounds[1].time = 5f;
+            sounds[1].Play();//ガチャっというオーディオの取得
+        }
+        if (stopflag3 != true)
+        {
+            sounds[2].time = 5f;
+            sounds[2].Play();//ガチャっというオーディオの取得
+        }
+
+    }
 
     private void Update()　//ゲームが始まったら
     {
         this.Reel.transform.Translate(0, speed1, 0);　//リールをｙ方向（下）に動かす
         this.Reel2.transform.Translate(0, speed2, 0);
         this.Reel3.transform.Translate(0, speed3, 0);
+
 
         if (Reel.transform.position.y < -130)　//リールが一番下に来たら
         {
@@ -73,6 +97,7 @@ public class Reelcontroller : MonoBehaviour
         }
 
         if (stopflag1 && 0.85 <= Mathf.Abs(Reel.transform.position.y % 1.5f) && Mathf.Abs(Reel.transform.position.y % 1.5f) < 0.88)
+            //ボタンが押されていて、かつ、リールを1.5ｆで割った余りが規定値以内であったら
         {
             speed1 = 0;//リールの回転スピードを０にする
 
@@ -80,33 +105,48 @@ public class Reelcontroller : MonoBehaviour
 
         if (stopflag2 && 0.85 <= Mathf.Abs(Reel2.transform.position.y % 1.5f) && Mathf.Abs(Reel2.transform.position.y % 1.5f) < 0.88)
         {
-            speed2 = 0;//リールの回転スピードを０にする
+            speed2 = 0;
 
         }
 
         if (stopflag3 && 0.85 <= Mathf.Abs(Reel3.transform.position.y % 1.5f) && Mathf.Abs(Reel3.transform.position.y % 1.5f) < 0.88)
         {
-            speed3 = 0;//リールの回転スピードを０にする
+            speed3 = 0;
 
         }
     }
 
     public void stopReel() //この関数がボタン1を押すと呼ばれる
     {
-        stopflag1 = true;
-        speed1 = -0.03f;
+        if (stopflag1 != true)//ボタンがまだ押されてない場合
+        {
+            speed1 = -0.03f;//リールをゆっくりにする
+            sounds[0].Stop();
+        }
+        stopflag1 = true;　//ボタンを押す
+        
     }
 
     public void stopReel2()
     {
+        if (stopflag2 != true)
+        {
+            speed2 = -0.03f;
+            sounds[1].Stop();
+        }
         stopflag2 = true;
-        speed2 = -0.03f;
+        
     }
 
     public void stopReel3()
     {
+        if (stopflag3 != true)
+        {
+            speed3 = -0.03f;
+            sounds[2].Stop();
+        }
         stopflag3 = true;
-        speed3 = -0.03f;
+     
     }
 }
 

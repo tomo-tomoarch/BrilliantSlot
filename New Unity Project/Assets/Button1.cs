@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Button1 : MonoBehaviour
 {
+    private AudioSource audioSource;//オーディオの宣言
+
     public Reelcontroller reelcontroller;
 
-    // Start is called before the first frame update
     void Start()
     {
         reelcontroller = GameObject.Find("ReelController").GetComponent<Reelcontroller>();
@@ -15,10 +16,7 @@ public class Button1 : MonoBehaviour
     {
         reelcontroller.stopReel();
 
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        
+        audioSource = gameObject.GetComponent<AudioSource>();//オーディオの取得
+        audioSource.Play();//ぴこっというオーディオの取得
     }
 }
