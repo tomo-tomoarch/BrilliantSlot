@@ -10,13 +10,13 @@ public class ReelGenerator1 : MonoBehaviour
 
     Transform pos;  //リールのTransform
   
-    int div0=5;//赤＄＄＄が出るしきい値
-    int div1=10;//＄＄＄が出るしきい値
-    int div2=15;//BARが出るしきい値
-    int div3=25;//bが出るしきい値
-    int div4=40;//0が出るしきい値
-    int div5=60;//wが出るしきい値
-    int div6=80;//%が出るしきい値
+    int div0=7;//赤＄＄＄が出るしきい値
+    int div1=15;//＄＄＄が出るしきい値
+    int div2=20;//BARが出るしきい値
+    int div3=40;//bが出るしきい値
+    int div4=55;//0が出るしきい値
+    int div5=80;//wが出るしきい値
+                //%が出るしきい値
 
     void Awake()//ゲーム開始時に
     {
@@ -52,12 +52,12 @@ public class ReelGenerator1 : MonoBehaviour
             {
                 tmp = 3;
             }
-            else if (div4 < rand && rand < div5
+            else if (div3 < rand && rand < div4
                )
             {
                 tmp = 4;
             }
-            else if (div5 < rand && rand < div6
+            else if (div4 < rand && rand < div5
                )
             {
                 tmp = 5;

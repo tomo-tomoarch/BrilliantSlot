@@ -7,6 +7,7 @@ TagManager:
   - buttonTag1
   - button1
   - reel
+  - getter
   layers:
   - Default
   - TransparentFX

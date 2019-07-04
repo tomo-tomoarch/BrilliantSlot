@@ -9,7 +9,6 @@ public class Lever : MonoBehaviour
     public Reelcontroller reelcontroller;//ReelControllerの宣言
     public ReelGenerator1 reelgenerator; //ReelGenerator1の宣言
 
-    // Start is called before the first frame update
     void Start()
     {
         reelcontroller = GameObject.Find("ReelController").GetComponent<Reelcontroller>();//ReelControllerの取得

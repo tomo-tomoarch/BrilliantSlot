@@ -16,17 +16,20 @@ public class Reelcontroller : MonoBehaviour
     Vector3 initialpos2;
     Vector3 initialpos3;
 
-    float speed1; //リールの回転速度
-    float speed2;
-    float speed3;
+    public float speed1; //リールの回転速度
+    public float speed2;
+    public float speed3;
 
     bool stopflag1 = false;//ボタンが押されたかどうか
     bool stopflag2 = false;
     bool stopflag3 = false;
+    bool allflag = true;
 
     ReelGenerator1 reelGenerator1;//ReelGenerator1の宣言
     ReelGenerator1 reelGenerator2;
     ReelGenerator1 reelGenerator3;
+
+    GameController gameController;
 
     private void Awake()　//ゲーム開始時に
     {
@@ -39,9 +42,13 @@ public class Reelcontroller : MonoBehaviour
         reelGenerator1 = GameObject.Find("ReelGenerator").GetComponent<ReelGenerator1>();//ReelGenerator1の取得
         reelGenerator2 = GameObject.Find("ReelGenerator (1)").GetComponent<ReelGenerator1>();
         reelGenerator3 = GameObject.Find("ReelGenerator (2)").GetComponent<ReelGenerator1>();
+
+        gameController = GameObject.Find("GameController").GetComponent<GameController>();
     }
     public void StartReel()//リールを再生成して回し始める関数
     {
+        DestroyGetter();
+
         reelGenerator1.GenerateReel();//ReelGenerator1のGenerateReel関数を呼ぶ
         reelGenerator2.GenerateReel();
         reelGenerator3.GenerateReel();
@@ -53,25 +60,23 @@ public class Reelcontroller : MonoBehaviour
         stopflag1 = false;　//ボタンを押していない状態にリセット
         stopflag2 = false;
         stopflag3 = false;
-
+        
          
 
         if (stopflag1 != true)
-        {
-            sounds[0].time = 5f;
-            sounds[0].Play();//ガチャっというオーディオの取得
+        {            
+            sounds[0].Play();//リール回転音プレイ
         }
         if (stopflag2 != true)
         {
-            sounds[1].time = 5f;
-            sounds[1].Play();//ガチャっというオーディオの取得
+            sounds[1].Play();//リール回転音プレイ
         }
         if (stopflag3 != true)
-        {
-            sounds[2].time = 5f;
-            sounds[2].Play();//ガチャっというオーディオの取得
+        {            
+            sounds[2].Play();//リール回転音プレイ
         }
 
+        allflag = false;
     }
 
     private void Update()　//ゲームが始まったら
@@ -114,6 +119,13 @@ public class Reelcontroller : MonoBehaviour
             speed3 = 0;
 
         }
+
+        if(speed1 == 0 && speed2 == 0 && speed3 == 0 && allflag != true)
+        {
+            allflag = true;
+            gameController.CheckMiddle();
+
+        }
     }
 
     public void stopReel() //この関数がボタン1を押すと呼ばれる
@@ -147,6 +159,18 @@ public class Reelcontroller : MonoBehaviour
         }
         stopflag3 = true;
      
+    }
+
+    public void DestroyGetter()
+    { //リールをデストロイしてリセットする関数
+
+        GameObject[] getters = GameObject.FindGameObjectsWithTag("getter"); //getterタグが付いているオブジェクトをすべて取得
+
+        foreach (GameObject i in getters)//各reelsのオブジェクトに対して以下を行う
+        {
+            Destroy(i);//reelsの各オブジェクトを破壊する
+
+        }
     }
 }
 
