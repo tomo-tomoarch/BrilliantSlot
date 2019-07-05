@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Lever : MonoBehaviour
 {
@@ -9,10 +10,16 @@ public class Lever : MonoBehaviour
     public Reelcontroller reelcontroller;//ReelControllerの宣言
     public ReelGenerator1 reelgenerator; //ReelGenerator1の宣言
 
+    public GameObject win_object; // Textオブジェクト
+
+    GameController gameController;
+
     void Start()
     {
         reelcontroller = GameObject.Find("ReelController").GetComponent<Reelcontroller>();//ReelControllerの取得
         reelgenerator = GameObject.Find("ReelGenerator").GetComponent<ReelGenerator1>();//ReelGenerator1の取得
+
+        gameController = GameObject.Find("GameController").GetComponent<GameController>();//ReelGenerator1の取得
     }
     public void OnClick()
     {
@@ -26,6 +33,10 @@ public class Lever : MonoBehaviour
         
         reelgenerator.DestroyReel();//リールを全消しする関数を呼ぶ
         reelcontroller.StartReel();//リールを再生成して回す関数を呼ぶ
+
+        gameController.coin -= 1.50f;
+        Text win_text = win_object.GetComponent<Text>();
+        win_text.text = " ";
     }
 
     IEnumerator LeverCoroutine()//コルーチン本体

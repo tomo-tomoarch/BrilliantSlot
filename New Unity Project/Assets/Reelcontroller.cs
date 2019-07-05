@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Reelcontroller : MonoBehaviour
 {
-    
-
     AudioSource[] sounds;//オーディオの宣言
 
     public GameObject Reel; //リールを取得
@@ -162,13 +160,13 @@ public class Reelcontroller : MonoBehaviour
     }
 
     public void DestroyGetter()
-    { //リールをデストロイしてリセットする関数
+    { //絵柄ID取得プレファブをデストロイしてリセットする関数
 
         GameObject[] getters = GameObject.FindGameObjectsWithTag("getter"); //getterタグが付いているオブジェクトをすべて取得
 
-        foreach (GameObject i in getters)//各reelsのオブジェクトに対して以下を行う
+        foreach (GameObject i in getters)//各getterのオブジェクトに対して以下を行う
         {
-            Destroy(i);//reelsの各オブジェクトを破壊する
+            Destroy(i);//getterの各オブジェクトを破壊する
 
         }
     }

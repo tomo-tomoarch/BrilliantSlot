@@ -6,24 +6,20 @@ public class CenterMiddleGetter : MonoBehaviour
 {
     public int centerMiddleSymbol;
 
-    Reelcontroller reelcontroller;
+    Reelcontroller reelcontroller;//Reelcontrollerの宣言
 
     private void Awake()
     {
-        reelcontroller = GameObject.Find("ReelController").GetComponent<Reelcontroller>();
+        reelcontroller = GameObject.Find("ReelController").GetComponent<Reelcontroller>();//Reelcontrollerの取得
 
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("reel"))
+        if (other.gameObject.CompareTag("reel"))//reelタグが付いたオブジェクトにぶつかったら
         {
-            //other.gameObject.SetActive(false); //ぶつかった相手をディアクティベート（消える
-            //other.isTrigger = false;
-
-            ReelSymbol reelSymbol = other.GetComponent<ReelSymbol>(); //ぶつかった相手のCardModel.csにアクセス
-            //cardModel.ToggleFace(false);
-            centerMiddleSymbol = reelSymbol.symbolNum;  //ぶつかった相手のカードインデックスをmiddleRankに代入する
+            ReelSymbol reelSymbol = other.GetComponent<ReelSymbol>(); //ぶつかった相手のReelSymbolにアクセス
+                        centerMiddleSymbol = reelSymbol.symbolNum;  //symbolNumをcenterMiddleSymbolに代入する
 
             Debug.Log("centerMiddle" + centerMiddleSymbol);
         }

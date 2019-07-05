@@ -14,9 +14,11 @@ public class ReelGenerator1 : MonoBehaviour
     int div1=15;//＄＄＄が出るしきい値
     int div2=20;//BARが出るしきい値
     int div3=40;//bが出るしきい値
-    int div4=55;//0が出るしきい値
+    int div4=55;//%が出るしきい値
     int div5=80;//wが出るしきい値
-                //%が出るしきい値
+                //0が出るしきい値
+
+
 
     void Awake()//ゲーム開始時に
     {

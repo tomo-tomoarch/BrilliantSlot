@@ -6,7 +6,10 @@ public class button2 : MonoBehaviour
 {
     private AudioSource audioSource;//オーディオの宣言
     public Reelcontroller reelcontroller;
-    public GameObject centerMiddleGetter;
+    
+    public GameObject centerTopGetter;//centerMiddleGetterの宣言
+    public GameObject centerMiddleGetter;//centerMiddleGetterの宣言
+    public GameObject centerBottomGetter;//centerMiddleGetterの宣言
 
     // Start is called before the first frame update
     void Start()
@@ -19,11 +22,9 @@ public class button2 : MonoBehaviour
         audioSource = gameObject.GetComponent<AudioSource>();//オーディオの取得
         audioSource.Play();//ぴこっというオーディオの取得
 
-        Instantiate(centerMiddleGetter, new Vector3(5.98f, 1.06f, 0.0f), Quaternion.identity);
+        Instantiate(centerTopGetter, new Vector3(5.98f, 2.57f, 0.0f), Quaternion.identity);//中リール上段にインスタンス化
+        Instantiate(centerMiddleGetter, new Vector3(5.98f, 1.06f, 0.0f), Quaternion.identity);//中リール中段にインスタンス化
+        Instantiate(centerBottomGetter, new Vector3(5.98f, -0.49f, 0.0f), Quaternion.identity);//中リール上段にインスタンス化
     }
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+ 
 }
