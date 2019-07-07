@@ -18,6 +18,8 @@ public class GameController : MonoBehaviour
     RightBottomGetter rightBottomGetter;
 
     ReelGenerator1 reelGenerator1;
+    ReelGenerator1 reelGenerator2;
+    ReelGenerator1 reelGenerator3;
 
     public GameObject medal;//メダルの宣言
     
@@ -31,7 +33,9 @@ public class GameController : MonoBehaviour
     {
         sounds = gameObject.GetComponents<AudioSource>();//オーディオの取得
 
-        reelGenerator1 = GameObject.Find("ReelGenerator").GetComponent<ReelGenerator1>();//RightBottomGetterの取得
+        reelGenerator1 = GameObject.Find("ReelGenerator").GetComponent<ReelGenerator1>();
+        reelGenerator2 = GameObject.Find("ReelGenerator (1)").GetComponent<ReelGenerator1>();
+        reelGenerator3 = GameObject.Find("ReelGenerator (2)").GetComponent<ReelGenerator1>();
 
     }
 
@@ -362,15 +366,29 @@ public class GameController : MonoBehaviour
     void WinBrilliant()
     {
         Text win_text = win_object.GetComponent<Text>();
-        win_text.text = "BONUS STAGE!!! GO!!!";
+        win_text.text = "BONUS STAGE!!! SPIN FAST!!!";
 
 
         reelGenerator1.div0 = 30;//赤＄＄＄が出るしきい値
         reelGenerator1.div1 = 55;//＄＄＄が出るしきい値
-        reelGenerator1.div2 = 70;//BARが出るしきい値
+        reelGenerator1.div2 = 60;//BARが出るしきい値
         reelGenerator1.div3 = 75;//bが出るしきい値
         reelGenerator1.div4 = 80;//%が出るしきい値
         reelGenerator1.div5 = 85;//wが出るしきい値
+                                 //0が出るしきい値
+        reelGenerator2.div0 = 30;//赤＄＄＄が出るしきい値
+        reelGenerator2.div1 = 55;//＄＄＄が出るしきい値
+        reelGenerator2.div2 = 60;//BARが出るしきい値
+        reelGenerator2.div3 = 75;//bが出るしきい値
+        reelGenerator2.div4 = 80;//%が出るしきい値
+        reelGenerator2.div5 = 85;//wが出るしきい値
+                                 //0が出るしきい値
+        reelGenerator3.div0 = 30;//赤＄＄＄が出るしきい値
+        reelGenerator3.div1 = 55;//＄＄＄が出るしきい値
+        reelGenerator3.div2 = 60;//BARが出るしきい値
+        reelGenerator3.div3 = 75;//bが出るしきい値
+        reelGenerator3.div4 = 80;//%が出るしきい値
+        reelGenerator3.div5 = 85;//wが出るしきい値
                                  //0が出るしきい値
         StartCoroutine(BonusCoroutine());
               
@@ -386,6 +404,24 @@ public class GameController : MonoBehaviour
         reelGenerator1.div3 = 40;//bが出るしきい値
         reelGenerator1.div4 = 55;//%が出るしきい値
         reelGenerator1.div5 = 80;//wが出るしきい値
+                                 //0が出るしきい値
+
+
+        reelGenerator2.div0 = 7;//赤＄＄＄が出るしきい値
+        reelGenerator2.div1 = 15;//＄＄＄が出るしきい値
+        reelGenerator2.div2 = 20;//BARが出るしきい値
+        reelGenerator2.div3 = 40;//bが出るしきい値
+        reelGenerator2.div4 = 55;//%が出るしきい値
+        reelGenerator2.div5 = 80;//wが出るしきい値
+                                 //0が出るしきい値
+
+
+        reelGenerator3.div0 = 7;//赤＄＄＄が出るしきい値
+        reelGenerator3.div1 = 15;//＄＄＄が出るしきい値
+        reelGenerator3.div2 = 20;//BARが出るしきい値
+        reelGenerator3.div3 = 40;//bが出るしきい値
+        reelGenerator3.div4 = 55;//%が出るしきい値
+        reelGenerator3.div5 = 80;//wが出るしきい値
                                  //0が出るしきい値
     }
 

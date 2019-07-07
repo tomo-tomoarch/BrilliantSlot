@@ -12,7 +12,7 @@ public class ReelGenerator1 : MonoBehaviour
   
     public int div0 =7;//赤＄＄＄が出るしきい値
     public int div1 =15;//＄＄＄が出るしきい値
-    public int div2 =20;//BARが出るしきい値
+    public int div2 =39;//BARが出るしきい値
     public int div3 =40;//bが出るしきい値
     public int div4 =55;//%が出るしきい値
     public int div5 =80;//wが出るしきい値
