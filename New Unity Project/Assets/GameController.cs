@@ -17,7 +17,9 @@ public class GameController : MonoBehaviour
     RightMiddleGetter rightMiddleGetter;
     RightBottomGetter rightBottomGetter;
 
+    ReelGenerator1 reelGenerator1;
 
+    public GameObject medal;//メダルの宣言
     
     public double coin;
     int koyaku;
@@ -28,6 +30,8 @@ public class GameController : MonoBehaviour
     private void Awake()
     {
         sounds = gameObject.GetComponents<AudioSource>();//オーディオの取得
+
+        reelGenerator1 = GameObject.Find("ReelGenerator").GetComponent<ReelGenerator1>();//RightBottomGetterの取得
 
     }
 
@@ -53,6 +57,8 @@ public class GameController : MonoBehaviour
         rightTopGetter = GameObject.Find("RightTopGetter(Clone)").GetComponent<RightTopGetter>();//RightTopGetterの取得
         rightMiddleGetter = GameObject.Find("RightMiddleGetter(Clone)").GetComponent<RightMiddleGetter>();//RightMiddleGetterの取得
         rightBottomGetter = GameObject.Find("RightBottomGetter(Clone)").GetComponent<RightBottomGetter>();//RightBottomGetterの取得
+
+
 
         if (leftTopGetter.leftTopSymbol == centerTopGetter.centerTopSymbol && centerTopGetter.centerTopSymbol == rightTopGetter.rightTopSymbol)//上段の場合
         {
@@ -320,57 +326,117 @@ public class GameController : MonoBehaviour
 
     void WinR7()
     {
-        coin += 150;
+        
 
         double win0 = 150.00f;
 
         Text win_text = win_object.GetComponent<Text>();
         win_text.text = "$" + win0.ToString("F2") + "WIN!!";
+
+        for(int i = 0; i < 300; i++)
+        {
+            float randx = Random.Range(-7.5f, 7.5f);
+            float randy = Random.Range(5, 0.5f*300);
+            Instantiate(medal, new Vector3(randx, randy, 0.0f), Quaternion.identity);
+        }
+        
     }
 
     void Win7()
     {
-        coin += 100;
+      
 
         double win1 = 100.00f;
 
         Text win_text = win_object.GetComponent<Text>();
         win_text.text = "$" + win1.ToString("F2") + "WIN!!";
+
+        for (int i = 0; i < 200; i++)
+        {
+            float randx = Random.Range(-7.5f, 7.5f);
+            float randy = Random.Range(5, 0.5f * 200);
+            Instantiate(medal, new Vector3(randx, randy, 0.0f), Quaternion.identity);
+        }
     }
 
     void WinBrilliant()
     {
+        Text win_text = win_object.GetComponent<Text>();
+        win_text.text = "BONUS STAGE!!! GO!!!";
 
+
+        reelGenerator1.div0 = 30;//赤＄＄＄が出るしきい値
+        reelGenerator1.div1 = 55;//＄＄＄が出るしきい値
+        reelGenerator1.div2 = 70;//BARが出るしきい値
+        reelGenerator1.div3 = 75;//bが出るしきい値
+        reelGenerator1.div4 = 80;//%が出るしきい値
+        reelGenerator1.div5 = 85;//wが出るしきい値
+                                 //0が出るしきい値
+        StartCoroutine(BonusCoroutine());
+              
+    }
+
+    IEnumerator BonusCoroutine()//コルーチン本体
+    {
+        yield return new WaitForSeconds(60f);
+
+        reelGenerator1.div0 = 7;//赤＄＄＄が出るしきい値
+        reelGenerator1.div1 = 15;//＄＄＄が出るしきい値
+        reelGenerator1.div2 = 20;//BARが出るしきい値
+        reelGenerator1.div3 = 40;//bが出るしきい値
+        reelGenerator1.div4 = 55;//%が出るしきい値
+        reelGenerator1.div5 = 80;//wが出るしきい値
+                                 //0が出るしきい値
     }
 
     void WinBell()
     {
-        coin += 10;
+       
 
         double win3 = 10.00f;
 
         Text win_text = win_object.GetComponent<Text>();
         win_text.text = "$" + win3.ToString("F2") + "WIN!!";
+
+        for (int i = 0; i < 20; i++)
+        {
+            float randx = Random.Range(-7.5f, 7.5f);
+            float randy = Random.Range(5, 0.5f * 20);
+            Instantiate(medal, new Vector3(randx, randy, 0.0f), Quaternion.identity);
+        }
     }
 
     void WinCherry()
     {
-        coin += 2.50f;
+        
 
         double win4 = 2.50f;
 
         Text win_text = win_object.GetComponent<Text>();
         win_text.text = "$" + win4.ToString("F2") + "WIN!!";
+
+        for (int i = 0; i < 5; i++)
+        {
+            float randx = Random.Range(-7.5f, 7.5f);
+            float randy = Random.Range(5, 0.5f * 20);
+            Instantiate(medal, new Vector3(randx, randy, 0.0f), Quaternion.identity);
+        }
     }
 
     void WinWatermelon()
     {
-        coin += 5;
 
         double win5 = 5.00f;
 
         Text win_text = win_object.GetComponent<Text>();
         win_text.text = "$" + win5.ToString("F2") + "WIN!!";
+
+        for (int i = 0; i < 10; i++)
+        {
+            float randx = Random.Range(-7.5f, 7.5f);
+            float randy = Random.Range(5, 0.5f * 20);
+            Instantiate(medal, new Vector3(randx, randy, 0.0f), Quaternion.identity);
+        }
     }
 
    

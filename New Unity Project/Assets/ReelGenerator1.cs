@@ -10,12 +10,12 @@ public class ReelGenerator1 : MonoBehaviour
 
     Transform pos;  //リールのTransform
   
-    int div0=7;//赤＄＄＄が出るしきい値
-    int div1=15;//＄＄＄が出るしきい値
-    int div2=20;//BARが出るしきい値
-    int div3=40;//bが出るしきい値
-    int div4=55;//%が出るしきい値
-    int div5=80;//wが出るしきい値
+    public int div0 =7;//赤＄＄＄が出るしきい値
+    public int div1 =15;//＄＄＄が出るしきい値
+    public int div2 =20;//BARが出るしきい値
+    public int div3 =40;//bが出るしきい値
+    public int div4 =55;//%が出るしきい値
+    public int div5 =80;//wが出るしきい値
                 //0が出るしきい値
 
 

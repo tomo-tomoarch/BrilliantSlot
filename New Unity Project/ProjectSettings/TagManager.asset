@@ -8,6 +8,7 @@ TagManager:
   - button1
   - reel
   - getter
+  - medal
   layers:
   - Default
   - TransparentFX
@@ -50,4 +51,7 @@ TagManager:
     locked: 0
   - name: waku
     uniqueID: 1945238375
+    locked: 0
+  - name: medal
+    uniqueID: 3754201933
     locked: 0
