@@ -480,9 +480,7 @@ public class GameController : MonoBehaviour
     {
         coin += 1.50f;
 
-        double win6 = 1.50f;
-
         Text win_text = win_object.GetComponent<Text>();
-        win_text.text = "$" + win6.ToString("F2") + "WIN!!";
+        win_text.text = "Replay!!";
     }
 }
