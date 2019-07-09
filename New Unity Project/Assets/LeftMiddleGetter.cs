@@ -18,12 +18,11 @@ public class LeftMiddleGetter : MonoBehaviour
     {
         if (other.gameObject.CompareTag("reel"))
         {
-            //other.gameObject.SetActive(false); //ぶつかった相手をディアクティベート（消える
-            //other.isTrigger = false;
+           
 
-            ReelSymbol reelSymbol = other.GetComponent<ReelSymbol>(); //ぶつかった相手のCardModel.csにアクセス
-            //cardModel.ToggleFace(false);
-            leftMiddleSymbol = reelSymbol.symbolNum;  //ぶつかった相手のカードインデックスをmiddleRankに代入する
+            ReelSymbol reelSymbol = other.GetComponent<ReelSymbol>(); 
+           
+            leftMiddleSymbol = reelSymbol.symbolNum;
 
             Debug.Log("LeftMiddle" + leftMiddleSymbol);
         }
